@@ -1,0 +1,55 @@
+{% extends "basearq/index.html" %}
+{% load static %}
+
+
+{% block imagendefondo %}
+        
+<header class="masthead" style="background-image: url('{% static 'assets/img/quiensoy.jpg' %}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+
+{% endblock imagendefondo %}
+
+{% block titulo %}
+
+<h1>¿Quien soy?</h1>
+<span class="subheading">Aca les cuento...</span>
+
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+        <section class="py-5" style="background-color: #f8f9fa;">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8">
+                <h2 class="fw-bold text-center mb-4">Sobre mí</h2>
+                <p class="lead text-justify" style="font-size: 1.1rem; line-height: 1.8;">
+                    Mi nombre es Ignacio Carabelli, tengo 43 años y soy arquitecto... de casas y edificios (¡no de software, ja!). Vengo de un mundo laboral muy diferente al que exploramos en este curso, pero desde que era adolescente me interesó la informática. Mi primera computadora fue una 386 con monitor ámbar, allá por los años 90. En ese entonces me atraían principalmente los juegos, pero poco a poco me fui metiendo —de manera autodidacta— en la programación. Sinceramente no recuerdo con qué lenguaje empecé… tal vez BASIC, no lo sé. Hacía cosas muy simples, pero me fascinaba esa idea de escribirle algo a la computadora y que lo hiciera.
+                </p>
+                <p class="text-justify" style="font-size: 1rem; line-height: 1.7;">
+                    En paralelo, mi familia siempre estuvo vinculada al mundo de la construcción. Nadie era profesional del rubro, pero sí trabajaban o se relacionaban con él, a veces incluso como hobby, como en el caso de mi papá que aún hoy con casi 80 años sigue haciendo cosas en su taller. Ese mundo también me fue conquistando.
+                </p>
+                <p class="text-justify" style="font-size: 1rem; line-height: 1.7;">
+                    Con los años, al llegar el momento de elegir una carrera, la informática fue quedando en un segundo plano y seguí el camino de la arquitectura. Sin embargo, la tecnología siempre estuvo presente en mi vida, ya fuera a través de juegos, películas, documentales, con el AutoCad, el diseño 3D o simplemente por curiosidad. Esa “espina” de la programación nunca se fue del todo.
+                </p>
+                <p class="text-justify" style="font-size: 1rem; line-height: 1.7;">
+                    Este verano leí un libro sobre inteligencia artificial —que abordaba tanto sus aspectos positivos como los no tan positivos— y, casi de forma inmediata, volvió a surgir en mí el interés por este mundo. A eso se sumó esa vieja inquietud por la programación, y, con muchas ganas de aprender algo completamente nuevo (también leí varias cosas de neurociencia y la plasticidad neuronal), decidí inscribirme en este curso. El resultado fue maravilloso
+                <p class="text-justify" style="font-size: 1rem; line-height: 1.7;">
+                    Me reencontré con esa sensación que tanto me gustaba: la de decirle a la computadora qué hacer… ¡y que lo haga! Ahora mi intención es seguir profundizando en este camino, sin la presión de “tener que recibirme” de algo, simplemente explorando y descubriendo qué es lo que más me interesa y tal vez, en algún momento dar el salto al mundo de TI de forma laboral y profesional. Por el momento, lo que más me llamó la atención fue el backend (la cuota de diseño ya la tengo cubierta desde la arquitectura 😄), así que probablemente mi próximo paso sea hacer un curso sobre bases de datos (si recomiendan otra cosa, por favor dígname, estaré muy agradecido).
+                <p class="text-justify" style="font-size: 1rem; line-height: 1.7;">
+                    Para cerrar esta breve historia, quiero agradecerles la dedicación y el tiempo. El tiempo es un valor irremplazable, y dedicarlo a enseñar y compartir conocimiento es, para mí, uno de los mayores regalos que se pueden dar.
+                <p class="text-justify" style="font-size: 1rem; line-height: 1.7;">
+                    ¡Muchas gracias!
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock contenido %}
+

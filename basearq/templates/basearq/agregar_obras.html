@@ -1,0 +1,71 @@
+{% extends "basearq/index.html" %}
+{% load static %}
+
+
+{% block imagendefondo %}
+        
+<header class="masthead" style="background-image: url('{% static 'assets/img/agregarobra.jpg' %}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+
+{% endblock imagendefondo %}
+
+{% block titulo %}
+
+<h1>Agregar Obra</h1>
+<span class="subheading">Las obras iconicas de la arquitectura Argentina</span>
+
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+        <div class="mb-4 d-flex justify-content-end gap-2">
+    <a href="{% url 'agregar_ciudad' %}" class="btn btn-outline-primary btn-sm">
+        <i class="fas fa-plus-circle"></i> Nueva Ciudad
+    </a>
+    <a href="{% url 'agregar_arquitecto' %}" class="btn btn-outline-primary btn-sm">
+        <i class="fas fa-plus-circle"></i> Nuevo Arquitecto
+    </a>
+</div>
+
+
+        <form method="post" enctype="multipart/form-data" class="container mt-5">
+    {% csrf_token %}
+    <div class="card p-4 shadow">
+        <h4 class="mb-4 text-center">Cargar nueva obra</h4>
+
+        <!-- Formulario de obra -->
+        {% for field in obra_form %}
+            <div class="mb-3">
+                <label class="form-label">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="text-danger small">{{ field.errors|striptags }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <!-- Imagen -->
+        <div class="mb-3">
+            <label class="form-label">{{ imagen_form.imagen.label }}</label>
+            {{ imagen_form.imagen }}
+            {% if imagen_form.imagen.errors %}
+                <div class="text-danger small">{{ imagen_form.imagen.errors|striptags }}</div>
+            {% endif %}
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-upload"></i> Cargar Obra
+            </button>
+        </div>
+    </div>
+</form>
+
+
+
+{% endblock contenido %}
+

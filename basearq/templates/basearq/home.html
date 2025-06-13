@@ -1,0 +1,139 @@
+{% extends "basearq/index.html" %}
+{% load static %}
+
+{% block imagendefondo %}
+        
+<header class="masthead" style="background-image: url('{% static 'assets/img/fondoHOME.jpg' %}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+
+{% endblock imagendefondo %}
+
+{% block titulo %}
+
+<h1>Arquitectura Argentina</h1>
+<span class="subheading">Las obras iconicas de la arquitectura Argentina</span>
+
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+<!-- TITULO-->
+<div class="container px-4 px-lg-5 mb-5">
+    <section class="page-section bg-light" id="portfolio">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">secciones</h2>
+                <h3 class="section-subheading text-muted">En nuestras ciudades encontramos obras maravillosas de arquitectos argentinos</h3>
+                <div class="border-top mb-5"></div>
+            </div>
+
+            <!-- Primera fila-->
+            <div class="row">
+                <!-- ARQUITECTOS -->
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="portfolio-item">
+                        <a class="portfolio-link" href="{% url 'listado_arquitectos' %}">
+                            <div class="portfolio-hover"><div class="portfolio-hover-content"></div></div>
+                            <img class="img-fluid" 
+                                    src="{% static 'assets/img/arquitectos.jpg' %}" 
+                                    alt="..." 
+                                    style="height: 250px; width: 100%; object-fit: cover; filter: grayscale(100%); transition: filter 0.5s;" 
+                                    onmouseover="this.style.filter='none'" 
+                                    onmouseout="this.style.filter='grayscale(100%)'" />
+                        </a>
+                        <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading">Arquitectos</div>
+                            <div class="portfolio-caption-subheading text-muted">¿Buscas a un arquitecto?</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OBRAS -->
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="portfolio-item">
+                        <a class="portfolio-link" href="{% url 'listado_nombre_obras' %}">
+                            <div class="portfolio-hover"><div class="portfolio-hover-content"></div></div>
+                                <img class="img-fluid" 
+                                    src="{% static 'assets/img/homeobras.jpg' %}" 
+                                    alt="..." 
+                                    style="height: 250px; width: 100%; object-fit: cover; filter: grayscale(100%); transition: filter 0.5s;" 
+                                    onmouseover="this.style.filter='none'" 
+                                    onmouseout="this.style.filter='grayscale(100%)'" />
+                        </a>
+                        <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading">Obras</div>
+                            <div class="portfolio-caption-subheading text-muted">¿Buscas una obra en particular?</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CIUDADES -->
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="portfolio-item">
+                        <a class="portfolio-link" href="{% url 'listado_ciudades' %}">
+                            <div class="portfolio-hover"><div class="portfolio-hover-content"></div></div>
+                                <img class="img-fluid" 
+                                    src="{% static 'assets/img/homeciudades.jpg' %}" 
+                                    alt="..." 
+                                    style="height: 250px; width: 100%; object-fit: cover; filter: grayscale(100%); transition: filter 0.5s;" 
+                                    onmouseover="this.style.filter='none'" 
+                                    onmouseout="this.style.filter='grayscale(100%)'" />
+                        </a>
+                        <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading">Ciudades</div>
+                            <div class="portfolio-caption-subheading text-muted">¿Buscás qué obras hay en tu ciudad?</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Segunda fila-->
+            <div class="row justify-content-center">
+                <!-- AGREGAR OBRAS -->
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="portfolio-item">
+                        <a class="portfolio-link" href="{% url 'agregar_obras' %}">
+                            <div class="portfolio-hover"><div class="portfolio-hover-content"></div></div>
+                                <img class="img-fluid" 
+                                    src="{% static 'assets/img/masobras.jpg' %}" 
+                                    alt="..." 
+                                    style="height: 150px; width: 50%; object-fit: cover; filter: grayscale(100%); transition: filter 0.5s;" 
+                                    onmouseover="this.style.filter='none'" 
+                                    onmouseout="this.style.filter='grayscale(100%)'" />
+                        </a>
+                        <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading">Nuevas obras</div>
+                            <div class="portfolio-caption-subheading text-muted">¿Querés agregar una obra?</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- LISTADO DE OBRAS -->
+                                <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="portfolio-item">
+                        <a class="portfolio-link" href="{% url 'listado_obras' %}">
+                            <div class="portfolio-hover"><div class="portfolio-hover-content"></div></div>
+                                <img class="img-fluid" 
+                                    src="{% static 'assets/img/listadobrasHOME.jpg' %}" 
+                                    alt="..." 
+                                    style="height: 150px; width: 50%; object-fit: cover; filter: grayscale(100%); transition: filter 0.5s;" 
+                                    onmouseover="this.style.filter='none'" 
+                                    onmouseout="this.style.filter='grayscale(100%)'" />
+                        </a>
+                        <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading">Listado de obras</div>
+                            <div class="portfolio-caption-subheading text-muted">¿Querés ver todo?</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+{% endblock contenido %}
+

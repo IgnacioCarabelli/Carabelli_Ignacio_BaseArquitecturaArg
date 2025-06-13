@@ -1,0 +1,38 @@
+{% extends "basearq/index.html" %}
+{% load static %}
+
+
+{% block imagendefondo %}
+        
+<header class="masthead" style="background-image: url('{% static 'assets/img/cargausuarios.jpeg' %}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+
+{% endblock imagendefondo %}
+
+{% block titulo %}
+
+<h1>Arquitectura Argentina</h1>
+<span class="subheading">Las obras iconicas de la arquitectura Argentina</span>
+
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+<div class="container mt-5">
+    <h4>Agregar Arquitecto</h4>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <a href="{% url 'agregar_obras' %}" class="btn btn-secondary">Volver</a>
+    </form>
+</div>
+
+
+
+{% endblock contenido %}
+

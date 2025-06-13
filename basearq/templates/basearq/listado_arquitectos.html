@@ -1,0 +1,58 @@
+{% extends "basearq/index.html" %}
+{% load static %}
+
+{% block imagendefondo %}
+        
+<header class="masthead" style="background-image: url('{% static 'assets/img/fondoHOME.jpg' %}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+
+{% endblock imagendefondo %}
+
+{% block titulo %}
+
+<h1>Lista de Arquitectos</h1>
+<span class="subheading">Gracias a tu colaboracion armamos esta base de obras</span>
+
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+
+<div class="mb-3 text-end">
+    <a href="{% url 'agregar_arquitecto' %}" class="btn btn-success">
+        <i class="fas fa-plus"></i> Agregar Arquitecto
+    </a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in arquitectos %}
+        <tr>
+            <td>{{ a.id }}</td>
+            <td>{{ a.nombre }}</td>
+            <td>
+                <a href="{% url 'pagina_en_construccion' %}" class="btn btn-sm btn-outline-info">
+                    <i class="fas fa-eye"></i> Detalles
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+
+
+{% endblock contenido %}

@@ -1,0 +1,93 @@
+{% extends "basearq/index.html" %}
+{% load static %}
+
+{% block imagendefondo %}
+        
+<header class="masthead" style="background-image: url('{% static 'assets/img/fondoHOME.jpg' %}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+
+{% endblock imagendefondo %}
+
+{% block titulo %}
+
+<h1>Buscar</h1>
+<span class="subheading">¿Que obra, arquitecto o ciudad buscas?</span>
+
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+<form method="get" class="mb-3 d-flex" role="search">
+    <input type="text" name="q" class="form-control me-2" placeholder="Buscar por nombre, ciudad o arquitecto" value="{{ query }}">
+    <button class="btn btn-primary me-2" type="submit">Buscar</button>
+    <a href="{% url 'buscar' %}" class="btn btn-secondary">Limpiar</a>
+</form>
+
+    {% if query %}
+        {% if obras %}
+            <p class="alert alert-info">
+                Resultados para "<strong>{{ query }}</strong>": {{ obras|length }} obra{{ obras|length|pluralize }} encontrada{{ obras|length|pluralize }}.
+                {% if not user.is_authenticated %}
+                    <br>Si querés verlas, ingresá como usuario.
+                {% endif %}
+            </p>
+
+            {% if user.is_authenticated %}
+                <div class="table-responsive">
+                    <table class="table table-striped align-middle">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Fecha de publicación</th>
+                                <th>Nombre</th>
+                                <th>Ciudad</th>
+                                <th>Arquitecto(s)</th>
+                                <th>Imagen</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for obra in obras %}
+                            <tr>
+                                <td>{{ obra.id }}</td>
+                                <td>{{ obra.fecha_publicacion|date:"d/m/Y" }}</td>
+                                <td>{{ obra.nombre }}</td>
+                                <td>{{ obra.ciudad.nombre }}</td>
+                                <td>
+                                    {% for arq in obra.arquitectos.all %}
+                                        {{ arq.nombre }}{% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    {% with obra.imagenes.first as img %}
+                                        {% if img %}
+                                            <img src="{{ img.imagen.url }}" alt="Imagen de {{ obra.nombre }}"
+                                                style="height: 80px; object-fit: cover; border-radius: 5px;">
+                                        {% else %}
+                                            <span class="text-muted">Sin imagen</span>
+                                        {% endif %}
+                                    {% endwith %}
+                                </td>
+                                <td>
+                                    <a href="{% url 'detalle_obra' obra.id %}" class="btn btn-sm btn-outline-info">
+                                        <i class="fas fa-eye"></i> Detalles
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
+        {% else %}
+            <p class="alert alert-warning">
+                No se encontraron obras para "<strong>{{ query }}</strong>".
+            </p>
+        {% endif %}
+    {% endif %}
+
+{% endblock contenido %}

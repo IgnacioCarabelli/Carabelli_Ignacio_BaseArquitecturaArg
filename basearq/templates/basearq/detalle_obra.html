@@ -1,0 +1,49 @@
+{% extends "basearq/index.html" %}
+
+{% load static %}
+
+
+{% block imagendefondo %}
+        
+<header class="masthead" style="background-image: url('{% static 'assets/img/fondoHOME.jpg' %}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+
+{% endblock imagendefondo %}
+
+{% block titulo %}
+
+<h1>Arquitectura Argentina</h1>
+<span class="subheading">Las obras iconicas de la arquitectura Argentina</span>
+
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+<div class="container mt-4">
+    <h2>{{ obra.nombre }}</h2>
+    <p><strong>Ciudad:</strong> {{ obra.ciudad.nombre }}</p>
+    <p><strong>Arquitectos:</strong> 
+        {% for arq in obra.arquitectos.all %}
+            {{ arq.nombre }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+    <p><strong>Fecha de publicación:</strong> {{ obra.fecha_publicacion|date:"d/m/Y" }}</p>
+    <p><strong>Descripción:</strong></p>
+    <p>{{ obra.descripcion|linebreaks }}</p>
+
+    {% with obra.imagenes.first as img %}
+        {% if img %}
+            <img src="{{ img.imagen.url }}" alt="Imagen de {{ obra.nombre }}" style="max-width: 100%;">
+        {% else %}
+            <p><em>Sin imagen disponible</em></p>
+        {% endif %}
+    {% endwith %}
+
+    <a href="{% url 'listado_obras' %}" class="btn btn-secondary mt-3">← Volver</a>
+</div>
+
+{% endblock contenido %}

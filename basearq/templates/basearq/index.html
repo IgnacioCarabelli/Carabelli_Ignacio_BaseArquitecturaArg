@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title> ArqArgentina </title>
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}"/>
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <!-- Font Awesome  -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-RXf+QSDCUQs6Bv6MM2pcbtC5a2wO+e5wWg6pU5qDZ1ycXnWr33I9SXDcZ6+5HqYj1T6nX3a6ZKw5tUoGXf6Zqw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <body style="background-color: #f5f5f5;">
+
+        <!-- Navigation-->
+        
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="#">{% now "d/m/Y" %}</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'buscar' %}">Buscar</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'contacto' %}">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'sobre_mi' %}">Sobre mí</a></li>
+                </ul>
+
+                <!--BOTONES Y AUTENTICACION-->
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+
+                        <!-- Botón administrador -->
+                        {% if user.is_superuser %}
+                        <li class="nav-item">
+                            <a href="{% url 'listado_usuarios_admin' %}"
+                            class="btn px-lg-3 py-3 py-lg-2"
+                            style="background-color: #ffc107; color: black; margin-left: 10px; margin-top: 8px;">
+                                <i class="fas fa-users-cog"></i> Admin Usuarios
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{% url 'pagina_en_construccion' %}"
+                            class="btn px-lg-3 py-3 py-lg-2"
+                            style="background-color: #ffc107; color: black; margin-left: 10px; margin-top: 8px;">
+                                <i class="fas fa-building"></i> Admin Obras
+                            </a>
+                        </li>
+
+                        {% endif %}
+
+                        <!-- Botón Salir -->
+                        <li class="nav-item">
+                            <form method="post" action="{% url 'salir' %}" style="margin: 0;">
+                                {% csrf_token %}
+                                <button type="submit"
+                                        class="btn btn-danger px-lg-3 py-3 py-lg-2"
+                                        style="margin-top: 8px;">
+                                    <i class="fas fa-sign-out-alt"></i> Salir
+                                </button>
+                            </form>
+                        </li>
+
+                        <!-- Botón Mi Perfil -->
+
+                        <li class="nav-item">
+                            <a href="{% url 'editar_mi_perfil' %}"
+                            class="btn px-lg-3 py-3 py-lg-2"
+                            style="background-color: #e9ecef; color: black; margin-left: 10px; margin-top: 8px;">
+                                <i class="fas fa-id-badge"></i> Mi Perfil
+                            </a>
+                        </li>
+
+                        <!-- Avatar - Nombre de usuario -->
+
+                        <li class="nav-item d-flex align-items-center px-lg-3 py-3 py-lg-2"
+                            style="background-color: #e9ecef; border-radius: 5px; margin-left: 10px; margin-top: 8px;">
+                            
+                            {% with request.session.avatar as avatar_session %}
+                                {% if avatar_session %}
+                                    <img src="{{ avatar_session }}" alt="avatar"
+                                        class="rounded-circle me-2"
+                                        style="width: 30px; height: 30px; object-fit: cover;">
+                                {% else %}
+                                    {% with user.avatar_set.last as avatar %}
+                                        {% if avatar %}
+                                            <img src="{{ avatar.imagen.url }}" alt="avatar"
+                                                class="rounded-circle me-2"
+                                                style="width: 30px; height: 30px; object-fit: cover;">
+                                        {% else %}
+                                            <i class="fas fa-user-circle fa-lg me-2" style="color: black;"></i>
+                                        {% endif %}
+                                    {% endwith %}
+                                {% endif %}
+                            {% endwith %}
+
+                            <span style="color: black;">{{ user.username }}</span>
+                        </li>
+                    {% else %}
+
+                        <!-- Ingreso y Registro -->
+
+                        <li class="nav-item">
+                            <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'ingreso' %}">
+                                <i class="fas fa-sign-in-alt"></i> Ingresa
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'carga_usuarios' %}">
+                                <i class="fas fa-user-plus"></i> Regístrate
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+
+
+
+            </div>
+        </div>
+    </nav>
+
+
+        <!-- BLOQUE IMAGEN DE FONDO-->
+        {% block imagendefondo %}
+        
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('{% static '' %}')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+
+        {% endblock imagendefondo %}
+
+
+                            <!-- BLOQUE DE TITULO-->
+                            {% block titulo %}
+                            
+                            <h1>¿Quien soy?</h1>
+                            <span class="subheading">Acá les cuento...</span>
+
+                            {% endblock titulo %}
+                            <!-- FIN BLOQUE DE TITULO-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- BLOQUE DE CONTENIDO-->
+
+        {% block contenido %}
+        
+
+
+        {% endblock contenido %}
+
+        <!-- FIN BLOQUE DE CONTENIDO-->
+
+        <!-- Footer-->
+
+<footer class="border-top mt-7">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <ul class="list-inline text-center">
+                    <li class="list-inline-item mx-2">
+                        <a href="{% url 'twitter' %}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item mx-2">
+                        <a href="{% url 'facebook' %}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="small text-center text-muted fst-italic">Agora Contenidos &copy; Junio 2025</div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </body>
+</html>
