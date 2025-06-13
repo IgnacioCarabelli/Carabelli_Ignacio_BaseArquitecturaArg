@@ -6,6 +6,8 @@ App desarrollada: Basearq
 Superuser: ArqAdministrador / Admin123456!
 Codigo para registrarse com oadministrador de la pagina: SOYADMIN2025
 
+Link al video: https://drive.google.com/file/d/1PX_v4duEtTdU6LmdpHRxFYc6FkBDdeyf/view?usp=drive_link
+
 ¿Como surge el proyecto?
   La idea de hacer un repositorio de obras y arquitectos de la argentina surgio hace mucho años en un desayuno en la ciudad de Mar del Plata en el Torreon del Monje.
   Alli estabamos con mi amigo y socio Mariano hablando sobre el patrimonio arquitectonico de la ciudad de Mar del Plata (que realmente es muy rico y diverso) y entre idas y vueltas surgio esta idea, armar "algo" donde
